@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Parse
 
 class AddEventViewController: UIViewController {
     

@@ -12,12 +12,24 @@
 		7B58A2FA1BD6AA8400B32F64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B58A2F81BD6AA8400B32F64 /* LaunchScreen.storyboard */; };
 		7B58A3051BD6AA8400B32F64 /* StableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A3041BD6AA8400B32F64 /* StableTests.swift */; };
 		7B58A3101BD6AA8400B32F64 /* StableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A30F1BD6AA8400B32F64 /* StableUITests.swift */; };
-		7B58A3221BD6AAE400B32F64 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31D1BD6AAE400B32F64 /* AddEventViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		7B58A3231BD6AAE400B32F64 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31E1BD6AAE400B32F64 /* DetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		7B58A3241BD6AAE400B32F64 /* ElsewhereViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31F1BD6AAE400B32F64 /* ElsewhereViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		7B58A3251BD6AAE400B32F64 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A3201BD6AAE400B32F64 /* NearbyViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		7B58A3261BD6AAE400B32F64 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A3211BD6AAE400B32F64 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		7B58A3281BD6AAF500B32F64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B58A3271BD6AAF500B32F64 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		7B58A3221BD6AAE400B32F64 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31D1BD6AAE400B32F64 /* AddEventViewController.swift */; };
+		7B58A3231BD6AAE400B32F64 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31E1BD6AAE400B32F64 /* DetailViewController.swift */; };
+		7B58A3241BD6AAE400B32F64 /* ElsewhereViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31F1BD6AAE400B32F64 /* ElsewhereViewController.swift */; };
+		7B58A3251BD6AAE400B32F64 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A3201BD6AAE400B32F64 /* NearbyViewController.swift */; };
+		7B58A3261BD6AAE400B32F64 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A3211BD6AAE400B32F64 /* SettingsViewController.swift */; };
+		7B58A3281BD6AAF500B32F64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B58A3271BD6AAF500B32F64 /* Main.storyboard */; };
+		7B5DF08B1BDFE69D0077A568 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF0891BDFE69D0077A568 /* Bolts.framework */; };
+		7B5DF08C1BDFE69D0077A568 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF08A1BDFE69D0077A568 /* Parse.framework */; };
+		7B5DF08E1BDFE6B30077A568 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF08D1BDFE6B30077A568 /* AudioToolbox.framework */; };
+		7B5DF0901BDFE6C10077A568 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF08F1BDFE6C10077A568 /* CFNetwork.framework */; };
+		7B5DF0921BDFE6D40077A568 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF0911BDFE6D40077A568 /* CoreGraphics.framework */; };
+		7B5DF0941BDFE6E00077A568 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF0931BDFE6E00077A568 /* CoreLocation.framework */; };
+		7B5DF0961BDFE6F80077A568 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF0951BDFE6F80077A568 /* QuartzCore.framework */; };
+		7B5DF0981BDFE7070077A568 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF0971BDFE7070077A568 /* Security.framework */; };
+		7B5DF09A1BDFE7280077A568 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF0991BDFE7280077A568 /* StoreKit.framework */; };
+		7B5DF09C1BDFE7330077A568 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09B1BDFE7330077A568 /* SystemConfiguration.framework */; };
+		7B5DF09E1BDFE7540077A568 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09D1BDFE7540077A568 /* libz.tbd */; };
+		7B5DF0A01BDFE7710077A568 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09F1BDFE7710077A568 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +67,18 @@
 		7B58A3201BD6AAE400B32F64 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		7B58A3211BD6AAE400B32F64 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7B58A3271BD6AAF500B32F64 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7B5DF0891BDFE69D0077A568 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		7B5DF08A1BDFE69D0077A568 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		7B5DF08D1BDFE6B30077A568 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7B5DF08F1BDFE6C10077A568 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7B5DF0911BDFE6D40077A568 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7B5DF0931BDFE6E00077A568 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7B5DF0951BDFE6F80077A568 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7B5DF0971BDFE7070077A568 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7B5DF0991BDFE7280077A568 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7B5DF09B1BDFE7330077A568 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7B5DF09D1BDFE7540077A568 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7B5DF09F1BDFE7710077A568 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +86,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B5DF0A01BDFE7710077A568 /* libsqlite3.tbd in Frameworks */,
+				7B5DF09E1BDFE7540077A568 /* libz.tbd in Frameworks */,
+				7B5DF09C1BDFE7330077A568 /* SystemConfiguration.framework in Frameworks */,
+				7B5DF09A1BDFE7280077A568 /* StoreKit.framework in Frameworks */,
+				7B5DF0981BDFE7070077A568 /* Security.framework in Frameworks */,
+				7B5DF0961BDFE6F80077A568 /* QuartzCore.framework in Frameworks */,
+				7B5DF0941BDFE6E00077A568 /* CoreLocation.framework in Frameworks */,
+				7B5DF0921BDFE6D40077A568 /* CoreGraphics.framework in Frameworks */,
+				7B5DF0901BDFE6C10077A568 /* CFNetwork.framework in Frameworks */,
+				7B5DF08E1BDFE6B30077A568 /* AudioToolbox.framework in Frameworks */,
+				7B5DF08C1BDFE69D0077A568 /* Parse.framework in Frameworks */,
+				7B5DF08B1BDFE69D0077A568 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +125,7 @@
 				7B58A3031BD6AA8400B32F64 /* StableTests */,
 				7B58A30E1BD6AA8400B32F64 /* StableUITests */,
 				7B58A2ED1BD6AA8400B32F64 /* Products */,
+				7B5DF0A11BDFE7790077A568 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +172,25 @@
 				7B58A3111BD6AA8400B32F64 /* Info.plist */,
 			);
 			path = StableUITests;
+			sourceTree = "<group>";
+		};
+		7B5DF0A11BDFE7790077A568 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B5DF09F1BDFE7710077A568 /* libsqlite3.tbd */,
+				7B5DF09D1BDFE7540077A568 /* libz.tbd */,
+				7B5DF09B1BDFE7330077A568 /* SystemConfiguration.framework */,
+				7B5DF0991BDFE7280077A568 /* StoreKit.framework */,
+				7B5DF0971BDFE7070077A568 /* Security.framework */,
+				7B5DF0951BDFE6F80077A568 /* QuartzCore.framework */,
+				7B5DF0931BDFE6E00077A568 /* CoreLocation.framework */,
+				7B5DF0911BDFE6D40077A568 /* CoreGraphics.framework */,
+				7B5DF08F1BDFE6C10077A568 /* CFNetwork.framework */,
+				7B5DF08D1BDFE6B30077A568 /* AudioToolbox.framework */,
+				7B5DF0891BDFE69D0077A568 /* Bolts.framework */,
+				7B5DF08A1BDFE69D0077A568 /* Parse.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +462,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Stable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CKings.Stable;
@@ -417,6 +477,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Stable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CKings.Stable;
@@ -428,6 +492,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StableTests",
+				);
 				INFOPLIST_FILE = StableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CKings.StableTests;
@@ -440,6 +508,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StableTests",
+				);
 				INFOPLIST_FILE = StableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CKings.StableTests;
@@ -491,6 +563,7 @@
 				7B58A3161BD6AA8400B32F64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B58A3171BD6AA8400B32F64 /* Build configuration list for PBXNativeTarget "StableTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +572,7 @@
 				7B58A3191BD6AA8400B32F64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B58A31A1BD6AA8400B32F64 /* Build configuration list for PBXNativeTarget "StableUITests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +581,7 @@
 				7B58A31C1BD6AA8400B32F64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Nearby View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" userLabel="Nearby View Controller" customClass="NearbyViewController" customModule="Pied_Piper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" userLabel="Nearby View Controller" customClass="NearbyViewController" customModule="Stable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -46,7 +45,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JpS-Nu-tCy">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nearbyCell" id="JpS-Nu-tCy">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JpS-Nu-tCy" id="dg6-rP-sBe">
@@ -98,7 +97,7 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Nearby" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="caS-uY-Lg6" id="m5w-Jf-yOk"/>
                         <outlet property="tableView" destination="zah-N7-H3T" id="avc-UX-rxb"/>
@@ -120,7 +119,7 @@
         <!--Add Event View Controller-->
         <scene sceneID="QC3-zB-eb5">
             <objects>
-                <viewController id="Rx5-Kd-lPe" customClass="AddEventViewController" customModule="Pied_Piper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Rx5-Kd-lPe" customClass="AddEventViewController" customModule="Stable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="keq-Ld-ueV"/>
                         <viewControllerLayoutGuide type="bottom" id="sgs-Uu-PLX"/>
@@ -206,7 +205,7 @@
         <!--Elsewhere View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" userLabel="Elsewhere View Controller" customClass="ElsewhereViewController" customModule="Pied_Piper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" userLabel="Elsewhere View Controller" customClass="ElsewhereViewController" customModule="Stable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -244,7 +243,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ufE-zL-phB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="elsewhereCell" id="ufE-zL-phB">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ufE-zL-phB" id="AaL-Zy-YkO">
@@ -294,7 +293,7 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Elsewhere" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="LPK-yv-Puz" id="iO4-RC-3ge"/>
                         <outlet property="tableView" destination="iIT-WU-TG8" id="jd9-84-0Mf"/>
@@ -316,7 +315,7 @@
         <!--Settings View Controller-->
         <scene sceneID="66t-Dk-CS3">
             <objects>
-                <viewController id="bcb-3l-vEZ" customClass="SettingsViewController" customModule="Pied_Piper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bcb-3l-vEZ" customClass="SettingsViewController" customModule="Stable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9b9-Jh-cAl"/>
                         <viewControllerLayoutGuide type="bottom" id="O2p-RX-XDE"/>
@@ -370,7 +369,7 @@
         <!--Detail View Controller-->
         <scene sceneID="E0r-4z-Cgy">
             <objects>
-                <viewController storyboardIdentifier="detailView" id="GVX-LU-a98" customClass="DetailViewController" customModule="Pied_Piper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailView" id="GVX-LU-a98" customClass="DetailViewController" customModule="Stable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vtC-fr-hgp"/>
                         <viewControllerLayoutGuide type="bottom" id="CyI-2V-9eW"/>
@@ -458,7 +457,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KC6-rA-xrF"/>
-        <segue reference="DDU-h0-mB8"/>
-        <segue reference="z4e-GV-NDs"/>
+        <segue reference="i51-ad-hzA"/>
+        <segue reference="ivg-l3-iDi"/>
     </inferredMetricsTieBreakers>
 </document>
