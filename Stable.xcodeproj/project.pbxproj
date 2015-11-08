@@ -14,10 +14,8 @@
 		7B58A3101BD6AA8400B32F64 /* StableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A30F1BD6AA8400B32F64 /* StableUITests.swift */; };
 		7B58A3221BD6AAE400B32F64 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31D1BD6AAE400B32F64 /* AddEventViewController.swift */; };
 		7B58A3231BD6AAE400B32F64 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31E1BD6AAE400B32F64 /* DetailViewController.swift */; };
-		7B58A3241BD6AAE400B32F64 /* ElsewhereViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A31F1BD6AAE400B32F64 /* ElsewhereViewController.swift */; };
 		7B58A3251BD6AAE400B32F64 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A3201BD6AAE400B32F64 /* NearbyViewController.swift */; };
 		7B58A3261BD6AAE400B32F64 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B58A3211BD6AAE400B32F64 /* SettingsViewController.swift */; };
-		7B58A3281BD6AAF500B32F64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B58A3271BD6AAF500B32F64 /* Main.storyboard */; };
 		7B5DF08B1BDFE69D0077A568 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF0891BDFE69D0077A568 /* Bolts.framework */; };
 		7B5DF08C1BDFE69D0077A568 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF08A1BDFE69D0077A568 /* Parse.framework */; };
 		7B5DF08E1BDFE6B30077A568 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF08D1BDFE6B30077A568 /* AudioToolbox.framework */; };
@@ -30,6 +28,7 @@
 		7B5DF09C1BDFE7330077A568 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09B1BDFE7330077A568 /* SystemConfiguration.framework */; };
 		7B5DF09E1BDFE7540077A568 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09D1BDFE7540077A568 /* libz.tbd */; };
 		7B5DF0A01BDFE7710077A568 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09F1BDFE7710077A568 /* libsqlite3.tbd */; };
+		7B7FC1F11BEEA9300056C2E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B7FC1F01BEEA9300056C2E2 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +62,8 @@
 		7B58A3111BD6AA8400B32F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B58A31D1BD6AAE400B32F64 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		7B58A31E1BD6AAE400B32F64 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		7B58A31F1BD6AAE400B32F64 /* ElsewhereViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElsewhereViewController.swift; sourceTree = "<group>"; };
 		7B58A3201BD6AAE400B32F64 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		7B58A3211BD6AAE400B32F64 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		7B58A3271BD6AAF500B32F64 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7B5DF0891BDFE69D0077A568 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		7B5DF08A1BDFE69D0077A568 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7B5DF08D1BDFE6B30077A568 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -79,6 +76,7 @@
 		7B5DF09B1BDFE7330077A568 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7B5DF09D1BDFE7540077A568 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7B5DF09F1BDFE7710077A568 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		7B7FC1F01BEEA9300056C2E2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,11 +143,10 @@
 				7B58A2EF1BD6AA8400B32F64 /* AppDelegate.swift */,
 				7B58A2F61BD6AA8400B32F64 /* Assets.xcassets */,
 				7B58A2F81BD6AA8400B32F64 /* LaunchScreen.storyboard */,
-				7B58A3271BD6AAF500B32F64 /* Main.storyboard */,
 				7B58A31D1BD6AAE400B32F64 /* AddEventViewController.swift */,
 				7B58A31E1BD6AAE400B32F64 /* DetailViewController.swift */,
-				7B58A31F1BD6AAE400B32F64 /* ElsewhereViewController.swift */,
 				7B58A3201BD6AAE400B32F64 /* NearbyViewController.swift */,
+				7B7FC1F01BEEA9300056C2E2 /* Main.storyboard */,
 				7B58A3211BD6AAE400B32F64 /* SettingsViewController.swift */,
 				7B58A2FB1BD6AA8400B32F64 /* Info.plist */,
 			);
@@ -260,6 +257,7 @@
 				TargetAttributes = {
 					7B58A2EB1BD6AA8400B32F64 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = UNKUGQ48LL;
 					};
 					7B58A2FF1BD6AA8400B32F64 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -296,9 +294,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B58A3281BD6AAF500B32F64 /* Main.storyboard in Resources */,
 				7B58A2FA1BD6AA8400B32F64 /* LaunchScreen.storyboard in Resources */,
 				7B58A2F71BD6AA8400B32F64 /* Assets.xcassets in Resources */,
+				7B7FC1F11BEEA9300056C2E2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +325,6 @@
 				7B58A2F01BD6AA8400B32F64 /* AppDelegate.swift in Sources */,
 				7B58A3251BD6AAE400B32F64 /* NearbyViewController.swift in Sources */,
 				7B58A3221BD6AAE400B32F64 /* AddEventViewController.swift in Sources */,
-				7B58A3241BD6AAE400B32F64 /* ElsewhereViewController.swift in Sources */,
 				7B58A3261BD6AAE400B32F64 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,14 +459,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Stable/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CKings.Stable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -477,14 +478,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Stable/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CKings.Stable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
