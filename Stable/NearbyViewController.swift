@@ -8,10 +8,18 @@
 
 import UIKit
 import Parse
+import CoreLocation
+import MapKit
 
-class NearbyViewController: UITableViewController {
+class NearbyViewController: UITableViewController, CLLocationManagerDelegate, SettingsViewControllerDelegate {
 
     
+    var locationManager: CLLocationManager!
+    
+    let dorms = ["North Mountain": [10,70], "Red Bricks":[-50,-50], "Towers": [0,0], "PCV": [30, -80]]
+    var curLoc: CLLocation! = CLLocation(latitude: 0, longitude: 0)
+    
+    var sortMethod: String?
     
     
     var eventArray = [Events]()
@@ -52,10 +60,28 @@ class NearbyViewController: UITableViewController {
                     }
                 }
             }
-            let sortedArray = array.sort{ $0.0 < $1.0 } //Sorts by alphabetical location! Adjust to sort by closeness to GPS position?
-            
-            for (key, value) in sortedArray {
-                var tempArray = value as AnyObject as! [PFObject]
+            var locArray: [String] = []
+            if let curLoc = self.curLoc {
+                let locSortedArray = array.keys.sort {
+                    dorm1, dorm2 in
+                    let loc1 = self.dorms[dorm1]!
+                    let loc2 = self.dorms[dorm2]!
+                    let coord1 = CLLocation(latitude: Double(loc1.first!), longitude: Double(loc1.last!))
+                    let coord2 = CLLocation(latitude: Double(loc1.first!), longitude: Double(loc2.last!))
+                    let distance1 = curLoc.distanceFromLocation(coord1)
+                    let distance2 = curLoc.distanceFromLocation(coord2)
+                    return distance1 < distance2
+                }
+                locArray = locSortedArray
+            }
+            var finalArray: [String] = []
+            if self.sortMethod == "Alphabetical" {
+                finalArray = Array(array.keys).sort(<)
+            } else {
+                finalArray = locArray
+            }
+            for key in finalArray {
+                var tempArray = array[key] as! AnyObject as! [PFObject]
                 tempArray.sortInPlace{
                     item1, item2 in
                     let time1 = item1["TimeAndDate"] as! String
@@ -82,7 +108,23 @@ class NearbyViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         refreshData()
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+    }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        
+        curLoc = locations.last! as CLLocation
+        
+        //curLoc = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
@@ -135,6 +177,15 @@ class NearbyViewController: UITableViewController {
                 viewController.event = eventArray[selectedIndex.section].sectionObjects[selectedIndex.row]
             }
         }
+        else if segue.identifier == "showSettings" {
+            let viewController = segue.destinationViewController as! SettingsViewController
+            viewController.delegate = self
+        }
+    }
+    
+    func controller(controller: SettingsViewController, newSortMethod: String) {
+        sortMethod = newSortMethod
+        refreshData()
     }
     /*
     // Override to support conditional editing of the table view.
