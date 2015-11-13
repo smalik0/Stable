@@ -35,6 +35,15 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     func refreshData() {
         let query = PFQuery(className: "Events")
         
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
         query.findObjectsInBackgroundWithBlock {
             (storedEvents: [PFObject]?, error: NSError?) -> Void in
             if self.eventArray.count != 0 {
@@ -99,6 +108,10 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
                 self.eventArray.append(Events(sectionName: key, sectionObjects: tempArray))
             }
             
+            if (CLLocationManager.locationServicesEnabled())
+            {
+                self.locationManager.stopUpdatingLocation()
+            }
             self.tableView.reloadData()
         }
     }
@@ -114,14 +127,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         sortMethod = PFUser.currentUser()!["SortMode"] as? String
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
+        
         refreshData()
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.resultSearchController = ({
