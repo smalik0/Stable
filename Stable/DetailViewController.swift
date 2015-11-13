@@ -30,6 +30,7 @@ class DetailViewController: UIViewController {
         details.sizeToFit()
         details.numberOfLines = 0
         details.text = event["Details"] as? String
+        postedBy.text = event["Creator"] as? String
     }
     
     override func didReceiveMemoryWarning() {

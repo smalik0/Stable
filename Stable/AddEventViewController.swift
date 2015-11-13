@@ -38,6 +38,7 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
             event["Name"] = eventName.text
             event["Location"] = eventLocation.text
             event["TimeAndDate"] = eventTime.text
+            event["Creator"] = PFUser.currentUser()!.username
             if let locationDetails = eventLocationDetails.text {
                 event["LocationDetails"] = locationDetails
             }

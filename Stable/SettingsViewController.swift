@@ -19,8 +19,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     var delegate: SettingsViewControllerDelegate?
     
     @IBOutlet weak var sortField: UITextField!
+    @IBOutlet weak var user: UILabel!
     let sortOptions = ["Alphabetical", "Nearest You"]
     let pickerView = UIPickerView()
+    let curUser = PFUser.currentUser()!
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -48,7 +50,8 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
-        
+        user.text = curUser.username
+        sortField.text = curUser["SortMode"] as? String
         sortField.inputView = pickerView
         sortField.inputAccessoryView = toolBar
         let tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -67,6 +70,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func signOut(sender: AnyObject) {
+        self.performSegueWithIdentifier("signOut", sender: self)
+    }
+    
     @IBAction func saveSettings(sender: AnyObject) {
         var complete = true
         for textField in [sortField] {
@@ -81,6 +88,8 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         }
         if complete {
             let sortMethod = sortField.text!
+            curUser["SortMode"] = sortMethod
+            curUser.saveEventually()
             if let delegate = self.delegate {
                 delegate.controller(self, newSortMethod: sortMethod)
             }

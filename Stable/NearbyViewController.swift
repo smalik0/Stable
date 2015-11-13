@@ -11,18 +11,21 @@ import Parse
 import CoreLocation
 import MapKit
 
-class NearbyViewController: UITableViewController, CLLocationManagerDelegate, SettingsViewControllerDelegate {
+class NearbyViewController: UITableViewController, CLLocationManagerDelegate, SettingsViewControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
 
     
     var locationManager: CLLocationManager!
     
     let dorms = ["North Mountain": [10,70], "Red Bricks":[-50,-50], "Towers": [0,0], "PCV": [30, -80]]
-    var curLoc: CLLocation! = CLLocation(latitude: 0, longitude: 0)
+    var curLoc: CLLocation!
+    
+    var resultSearchController = UISearchController()
     
     var sortMethod: String?
     
     
     var eventArray = [Events]()
+    var filteredEventArray = [Events]()
     struct Events {
         
         var sectionName : String!
@@ -77,8 +80,10 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             var finalArray: [String] = []
             if self.sortMethod == "Alphabetical" {
                 finalArray = Array(array.keys).sort(<)
-            } else {
+            } else if self.sortMethod == "Nearest You" && locArray != [] {
                 finalArray = locArray
+            } else {
+                finalArray = Array(array.keys).sort(<)
             }
             for key in finalArray {
                 var tempArray = array[key] as! AnyObject as! [PFObject]
@@ -107,20 +112,32 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        refreshData()
+        sortMethod = PFUser.currentUser()!["SortMode"] as? String
+        
         if (CLLocationManager.locationServicesEnabled())
         {
             locationManager = CLLocationManager()
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+        refreshData()
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
+        self.resultSearchController.searchBar.placeholder = "Search events"
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        
         curLoc = locations.last! as CLLocation
         
         //curLoc = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -138,14 +155,24 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if (self.resultSearchController.active) {
+            return filteredEventArray.count
+        }
+        
         return eventArray.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (self.resultSearchController.active) {
+            return filteredEventArray[section].sectionObjects.count
+        }
         return eventArray[section].sectionObjects.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (self.resultSearchController.active) {
+            return filteredEventArray[section].sectionName
+        }
         
         return eventArray[section].sectionName
     }
@@ -158,8 +185,14 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Value2, reuseIdentifier: cellIdentifier)
         }
+        var event: PFObject
+        if (self.resultSearchController.active) {
+            event = filteredEventArray[indexPath.section].sectionObjects[indexPath.row]
+        }
+        else {
+            event = eventArray[indexPath.section].sectionObjects[indexPath.row]
+        }
         
-        let event = eventArray[indexPath.section].sectionObjects[indexPath.row]
         let label = event["Name"] as! String
         let sublabel = event["TimeAndDate"] as! String
         let truncatedsublabel = sublabel.substringToIndex(sublabel.startIndex.advancedBy(22))
@@ -170,11 +203,43 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         return cell!
     }
     
+    func filterContentForSearchText(searchText: String) {
+        // Filter the array using the filter method
+        filteredEventArray = [Events]()
+        for var i = 0; i < eventArray.count; ++i {
+            var tempArray: [PFObject] = []
+            for var j = 0; j < eventArray[i].sectionObjects.count; ++j {
+                let event = eventArray[i].sectionObjects[j]
+                let name = event["Name"] as! String
+                if (name.lowercaseString.rangeOfString(searchText.lowercaseString) != nil) {
+                    tempArray.append(event)
+                }
+                
+            }
+            if tempArray.count > 0 {
+                self.filteredEventArray.append(Events(sectionName: eventArray[i].sectionName, sectionObjects: tempArray))
+            }
+        }
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        self.filterContentForSearchText(searchController.searchBar.text!)
+        self.tableView.reloadData()
+        
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         if segue.identifier == "showDetail" {
             let viewController = segue.destinationViewController as! DetailViewController
             if let selectedIndex = tableView.indexPathForSelectedRow {
-                viewController.event = eventArray[selectedIndex.section].sectionObjects[selectedIndex.row]
+                if (self.resultSearchController.active) {
+                    viewController.event = filteredEventArray[selectedIndex.section].sectionObjects[selectedIndex.row]
+                    self.resultSearchController.active = false
+                    
+                }
+                else {
+                    viewController.event = eventArray[selectedIndex.section].sectionObjects[selectedIndex.row]
+                }
             }
         }
         else if segue.identifier == "showSettings" {
