@@ -135,7 +135,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
-            
+            controller.searchBar.scopeButtonTitles = ["Name", "Dorm", "Creator"]
             self.tableView.tableHeaderView = controller.searchBar
             
             return controller
@@ -216,8 +216,22 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             var tempArray: [PFObject] = []
             for var j = 0; j < eventArray[i].sectionObjects.count; ++j {
                 let event = eventArray[i].sectionObjects[j]
-                let name = event["Name"] as! String
-                if (name.lowercaseString.rangeOfString(searchText.lowercaseString) != nil) {
+                
+                let scopes = self.resultSearchController.searchBar.scopeButtonTitles! as [String]
+                let selectedScope = scopes[self.resultSearchController.searchBar.selectedScopeButtonIndex] as String
+                var search = event["Name"] as! String
+                if selectedScope == "Name" {
+                    search = event["Name"] as! String
+                }
+                else if selectedScope == "Dorm" {
+                    search = event["Location"] as! String
+                    //let search2 = event["LocationDetails"] as! String
+                    //search = search + search2
+                }
+                else if selectedScope == "Creator" {
+                    search = event["Creator"] as! String
+                }
+                if (search.lowercaseString.rangeOfString(searchText.lowercaseString) != nil) {
                     tempArray.append(event)
                 }
                 
@@ -308,4 +322,3 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     }
 
 }
-
