@@ -84,15 +84,21 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
                     let distance2 = curLoc.distanceFromLocation(coord2)
                     return distance1 < distance2
                 }
-                print(curLoc)
+                //print(curLoc)
                 locArray = locSortedArray
             }
             var finalArray: [String] = []
-            if self.sortMethod == "Alphabetical" {
+            switch self.sortMethod! {
+            case "Alphabetical":
                 finalArray = Array(array.keys).sort(<)
-            } else if self.sortMethod == "Nearest You" && locArray != [] {
-                finalArray = locArray
-            } else {
+            case "Nearest You":
+                if locArray != [] {
+                    finalArray = locArray
+                }
+                else {
+                    finalArray = Array(array.keys).sort(<)
+                }
+            default:
                 finalArray = Array(array.keys).sort(<)
             }
             for key in finalArray {
@@ -136,6 +142,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
+            controller.searchBar.delegate = self
             controller.searchBar.scopeButtonTitles = ["Name", "Dorm", "Creator"]
             self.tableView.tableHeaderView = controller.searchBar
             
@@ -220,17 +227,18 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
                 
                 let scopes = self.resultSearchController.searchBar.scopeButtonTitles! as [String]
                 let selectedScope = scopes[self.resultSearchController.searchBar.selectedScopeButtonIndex] as String
-                var search = event["Name"] as! String
-                if selectedScope == "Name" {
+                var search: String = ""
+                switch selectedScope{
+                case "Name":
                     search = event["Name"] as! String
-                }
-                else if selectedScope == "Dorm" {
+                case "Dorm":
                     search = event["Location"] as! String
                     let search2 = event["Community"] as! String
                     search = search + search2
-                }
-                else if selectedScope == "Creator" {
+                case "Creator":
                     search = event["Creator"] as! String
+                default:
+                    search = event["Name"] as! String
                 }
                 if (search.lowercaseString.rangeOfString(searchText.lowercaseString) != nil) {
                     tempArray.append(event)
@@ -247,6 +255,10 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         self.filterContentForSearchText(searchController.searchBar.text!)
         self.tableView.reloadData()
         
+    }
+    
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        updateSearchResultsForSearchController(resultSearchController)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
@@ -266,6 +278,25 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         else if segue.identifier == "showSettings" {
             let viewController = segue.destinationViewController as! SettingsViewController
             viewController.delegate = self
+        }
+        else if segue.identifier == "showAddEvent" {
+            var closestDorm: String?
+            if let curLoc = self.curLoc {
+                let locSortedArray = dormLoc.keys.sort {
+                    dorm1, dorm2 in
+                    let loc1 = dormLoc[dorm1]!
+                    let loc2 = dormLoc[dorm2]!
+                    let coord1 = CLLocation(latitude: Double(loc1.first!), longitude: Double(loc1.last!))
+                    let coord2 = CLLocation(latitude: Double(loc2.first!), longitude: Double(loc2.last!))
+                    let distance1 = curLoc.distanceFromLocation(coord1)
+                    let distance2 = curLoc.distanceFromLocation(coord2)
+                    return distance1 < distance2
+                }
+                //print(curLoc)
+                closestDorm = locSortedArray.first
+            }
+            let viewController = segue.destinationViewController as! AddEventViewController
+            viewController.closestDorm = closestDorm
         }
     }
     
@@ -323,3 +354,17 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     }
 
 }
+/*
+private let datePicker = UIDatePicker()
+private let custonSearchBar = SearchBar()
+class SearchController: UISearchController {
+    override var searchBar: SearchBar {
+        return custonSearchBar
+    }
+}
+
+class SearchBar: UISearchBar {
+    override var inputView: UIDatePicker {
+        return datePicker
+    }
+}*/

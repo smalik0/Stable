@@ -20,6 +20,7 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
     let pickerView = UIPickerView()
     let datePickerView = UIDatePicker()
     var community: String?
+    var closestDorm: String?
     
     @IBAction func submitEvent(sender: AnyObject) {
         var complete = true
@@ -143,7 +144,11 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
         datePickerView.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         let tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        
+        if let closestDorm = closestDorm {
+            if let indexOfClosestDorm = dorms.indexOf(closestDorm) {
+                pickerView.selectRow(indexOfClosestDorm, inComponent: 0, animated: false)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
