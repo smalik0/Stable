@@ -29,6 +29,7 @@
 		7B5DF09E1BDFE7540077A568 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09D1BDFE7540077A568 /* libz.tbd */; };
 		7B5DF0A01BDFE7710077A568 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5DF09F1BDFE7710077A568 /* libsqlite3.tbd */; };
 		7B7FC1F11BEEA9300056C2E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B7FC1F01BEEA9300056C2E2 /* Main.storyboard */; };
+		7B830C231BFAFB8D0070116E /* Dorms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C221BFAFB8D0070116E /* Dorms.swift */; };
 		7BFC687F1BF546D8004D0F8F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFC687E1BF546D8004D0F8F /* LoginViewController.swift */; };
 		7BFC68811BF546E8004D0F8F /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFC68801BF546E8004D0F8F /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		7B5DF09D1BDFE7540077A568 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7B5DF09F1BDFE7710077A568 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7B7FC1F01BEEA9300056C2E2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7B830C221BFAFB8D0070116E /* Dorms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dorms.swift; sourceTree = "<group>"; };
 		7BFC687E1BF546D8004D0F8F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7BFC68801BF546E8004D0F8F /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 				7B58A31D1BD6AAE400B32F64 /* AddEventViewController.swift */,
 				7B58A31E1BD6AAE400B32F64 /* DetailViewController.swift */,
 				7B58A3201BD6AAE400B32F64 /* NearbyViewController.swift */,
+				7B830C221BFAFB8D0070116E /* Dorms.swift */,
 				7B7FC1F01BEEA9300056C2E2 /* Main.storyboard */,
 				7BFC687E1BF546D8004D0F8F /* LoginViewController.swift */,
 				7BFC68801BF546E8004D0F8F /* CreateAccountViewController.swift */,
@@ -330,6 +333,7 @@
 				7BFC68811BF546E8004D0F8F /* CreateAccountViewController.swift in Sources */,
 				7BFC687F1BF546D8004D0F8F /* LoginViewController.swift in Sources */,
 				7B58A3231BD6AAE400B32F64 /* DetailViewController.swift in Sources */,
+				7B830C231BFAFB8D0070116E /* Dorms.swift in Sources */,
 				7B58A2F01BD6AA8400B32F64 /* AppDelegate.swift in Sources */,
 				7B58A3251BD6AAE400B32F64 /* NearbyViewController.swift in Sources */,
 				7B58A3221BD6AAE400B32F64 /* AddEventViewController.swift in Sources */,

@@ -16,7 +16,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     
     var locationManager: CLLocationManager!
     
-    let dorms = ["North Mountain": [10,70], "Red Bricks":[-50,-50], "Towers": [0,0], "PCV": [30, -80]]
+    
     var curLoc: CLLocation!
     
     var resultSearchController = UISearchController()
@@ -76,14 +76,15 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             if let curLoc = self.curLoc {
                 let locSortedArray = array.keys.sort {
                     dorm1, dorm2 in
-                    let loc1 = self.dorms[dorm1]!
-                    let loc2 = self.dorms[dorm2]!
+                    let loc1 = dormLoc[dorm1]!
+                    let loc2 = dormLoc[dorm2]!
                     let coord1 = CLLocation(latitude: Double(loc1.first!), longitude: Double(loc1.last!))
-                    let coord2 = CLLocation(latitude: Double(loc1.first!), longitude: Double(loc2.last!))
+                    let coord2 = CLLocation(latitude: Double(loc2.first!), longitude: Double(loc2.last!))
                     let distance1 = curLoc.distanceFromLocation(coord1)
                     let distance2 = curLoc.distanceFromLocation(coord2)
                     return distance1 < distance2
                 }
+                print(curLoc)
                 locArray = locSortedArray
             }
             var finalArray: [String] = []
@@ -146,7 +147,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     {
         curLoc = locations.last! as CLLocation
         
-        //curLoc = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        //curLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
     }
     
@@ -225,8 +226,8 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
                 }
                 else if selectedScope == "Dorm" {
                     search = event["Location"] as! String
-                    //let search2 = event["LocationDetails"] as! String
-                    //search = search + search2
+                    let search2 = event["Community"] as! String
+                    search = search + search2
                 }
                 else if selectedScope == "Creator" {
                     search = event["Creator"] as! String

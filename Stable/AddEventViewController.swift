@@ -19,6 +19,7 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBOutlet weak var eventDetails: UITextView!
     let pickerView = UIPickerView()
     let datePickerView = UIDatePicker()
+    var community: String?
     
     @IBAction func submitEvent(sender: AnyObject) {
         var complete = true
@@ -37,6 +38,8 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
             let event = PFObject(className: "Events")
             event["Name"] = eventName.text
             event["Location"] = eventLocation.text
+            event["Community"] = community
+            print(community)
             event["TimeAndDate"] = eventTime.text
             event["Creator"] = PFUser.currentUser()!.username
             if let locationDetails = eventLocationDetails.text {
@@ -57,8 +60,8 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
     }
     
-    let dorms = ["North Mountain", "Red Bricks", "Towers", "PCV"]
-    
+        
+    let communities = ["North Mountain", "Red Bricks Redbricks", "Towers", "Cerro Vista", "Poly Canyon Village PCV"]
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -73,6 +76,24 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         eventLocation.text = dorms[row]
+        if row < 5 {
+            community = communities[0]
+        }
+        else if row < 11 {
+            community = communities[1]
+        }
+        else if row < 17 {
+            community = communities[2]
+        }
+        else if row < 27 {
+            community = communities[2]
+        }
+        else if row < 34 {
+            community = communities[3]
+        }
+        else {
+            community = communities[4]
+        }
     }
     func datePickerChanged(datePicker:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
@@ -137,6 +158,25 @@ class AddEventViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     func dismissPicker() {
         eventLocation.text = dorms[pickerView.selectedRowInComponent(0)]
+        let row = pickerView.selectedRowInComponent(0)
+        if row < 5 {
+            community = communities[0]
+        }
+        else if row < 11 {
+            community = communities[1]
+        }
+        else if row < 17 {
+            community = communities[2]
+        }
+        else if row < 27 {
+            community = communities[2]
+        }
+        else if row < 34 {
+            community = communities[3]
+        }
+        else {
+            community = communities[4]
+        }
         dismissKeyboard()
     }
     
