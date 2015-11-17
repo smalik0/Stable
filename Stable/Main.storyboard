@@ -234,6 +234,10 @@
                                     <action selector="resetPassword:" destination="iJe-gd-o9n" eventType="touchUpInside" id="YWU-Ms-xxo"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8PA-DU-3wz">
+                                <rect key="frame" x="226" y="33" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -241,6 +245,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="8PA-DU-3wz" id="Ftj-4z-MmA"/>
                         <outlet property="password" destination="jHH-KR-oJI" id="n3b-s1-Ttr"/>
                         <outlet property="rememberUser" destination="Clq-GN-fT7" id="7VC-74-hRf"/>
                         <outlet property="userName" destination="B5t-ae-dQK" id="R52-QS-8AT"/>
@@ -474,12 +479,17 @@
                                     <segue destination="MjE-zZ-htu" kind="unwind" identifier="exitCreateAccount" unwindAction="unwindToLogin:" id="KMo-bN-73c"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZDX-T2-hKr">
+                                <rect key="frame" x="158" y="33" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="ZDX-T2-hKr" id="wRt-WG-k1G"/>
                         <outlet property="password" destination="HgS-iH-4o9" id="NaP-TV-7tF"/>
                         <outlet property="passwordConfirm" destination="BoC-DN-HTL" id="ovU-d9-DHL"/>
                         <outlet property="userName" destination="gHG-eB-bE4" id="H7E-0i-st5"/>

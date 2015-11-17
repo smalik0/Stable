@@ -16,6 +16,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBAction func createAccount(sender: AnyObject) {
         var complete = true
         for textField in [userName, password, passwordConfirm] {
@@ -31,7 +32,7 @@ class CreateAccountViewController: UIViewController {
         if complete {
             if password.text == passwordConfirm.text {
                 if userName.text!.hasSuffix("@calpoly.edu") {
-                    
+                    loadingIndicator.startAnimating()
                     let user = PFUser()
                     user.username = userName.text
                     user.email = userName.text
@@ -56,6 +57,7 @@ class CreateAccountViewController: UIViewController {
                             alert.addAction(alertPressed)
                             self.presentViewController(alert, animated: true, completion: nil)
                         }
+                        self.loadingIndicator.stopAnimating()
                     }
                 }
                 else {
@@ -75,7 +77,7 @@ class CreateAccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadingIndicator.hidesWhenStopped = true
         // Do any additional setup after loading the view.
     }
 

@@ -88,10 +88,10 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
                 locArray = locSortedArray
             }
             var finalArray: [String] = []
-            switch self.sortMethod! {
-            case "Alphabetical":
+            switch self.sortMethod {
+            case "Alphabetical"?:
                 finalArray = Array(array.keys).sort(<)
-            case "Nearest You":
+            case "Nearest You"?:
                 if locArray != [] {
                     finalArray = locArray
                 }
@@ -143,13 +143,16 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
             controller.searchBar.delegate = self
-            controller.searchBar.scopeButtonTitles = ["Name", "Dorm", "Creator"]
+            controller.searchBar.scopeButtonTitles = ["Name", "Dorm", "Creator", "Date"]
             self.tableView.tableHeaderView = controller.searchBar
             
             return controller
         })()
+        self.resultSearchController.definesPresentationContext = true
+
         self.resultSearchController.searchBar.placeholder = "Search events"
     }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         curLoc = locations.last! as CLLocation
@@ -237,6 +240,9 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
                     search = search + search2
                 case "Creator":
                     search = event["Creator"] as! String
+                case "Date":
+                    search = event["TimeAndDate"] as! String
+                    
                 default:
                     search = event["Name"] as! String
                 }
@@ -258,6 +264,18 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     }
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if selectedScope == 3 {
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = UIDatePickerMode.Date
+            datePicker.minimumDate = NSDate()
+            
+            datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+            changeViewForSearch(datePicker)
+        }
+        else {
+            changeViewForSearch(nil)
+            
+        }
         updateSearchResultsForSearchController(resultSearchController)
     }
     
@@ -303,6 +321,28 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     func controller(controller: SettingsViewController, newSortMethod: String) {
         sortMethod = newSortMethod
         refreshData()
+    }
+    
+    func changeViewForSearch(view: UIView?) {
+        
+        for subview in resultSearchController.searchBar.subviews[0].subviews {
+            if let textView = subview as? UITextField {
+                if textView.inputView != view {
+                    self.resultSearchController.searchBar.resignFirstResponder()
+                    textView.inputView = view
+                    self.resultSearchController.searchBar.becomeFirstResponder()
+                }
+            }
+        }
+    }
+    
+    
+    func datePickerChanged(datePicker:UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat =  "EE MMM dd"
+        
+        let strDate = dateFormatter.stringFromDate(datePicker.date)
+        resultSearchController.searchBar.text = strDate
     }
     /*
     // Override to support conditional editing of the table view.
@@ -354,15 +394,21 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     }
 
 }
-/*
-private let datePicker = UIDatePicker()
-private let custonSearchBar = SearchBar()
-class SearchController: UISearchController {
-    override var searchBar: SearchBar {
-        return custonSearchBar
-    }
-}
 
+/*class SearchController: UISearchController {
+    override var inputView: UIView {
+        get {
+            return self.inputView
+        }
+        set {
+            self.inputView = newValue
+        }
+    }
+    func setNewInputView(view: UIView) {
+        self.inputView = view
+    }
+}*/
+/*
 class SearchBar: UISearchBar {
     override var inputView: UIDatePicker {
         return datePicker

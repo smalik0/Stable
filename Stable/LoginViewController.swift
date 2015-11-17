@@ -11,6 +11,7 @@ import Parse
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBAction func signIn(sender: AnyObject) {
         var complete = true
         for textField in [userName, password] {
@@ -25,6 +26,7 @@ class LoginViewController: UIViewController {
         }
         if complete {
             //Sign in
+            loadingIndicator.startAnimating()
             PFUser.logInWithUsernameInBackground(userName.text!, password:password.text!) {
                 (user: PFUser?, error: NSError?) -> Void in
                 if let user = user {
@@ -55,6 +57,8 @@ class LoginViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
+                
+                self.loadingIndicator.stopAnimating()
             }
         }
     }
@@ -99,6 +103,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var userName: UITextField!
     override func viewDidLoad() {
+        
+        loadingIndicator.hidesWhenStopped = true
         super.viewDidLoad()
         let currentUser = PFUser.currentUser()
         if let currentUser = currentUser {
