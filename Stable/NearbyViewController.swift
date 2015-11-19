@@ -11,7 +11,7 @@ import Parse
 import CoreLocation
 import MapKit
 
-class NearbyViewController: UITableViewController, CLLocationManagerDelegate, SettingsViewControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+class NearbyViewController: UITableViewController, CLLocationManagerDelegate, SettingsViewControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UIPickerViewDelegate {
 
     
     var locationManager: CLLocationManager!
@@ -22,6 +22,9 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     var resultSearchController = UISearchController()
     
     var sortMethod: String?
+    
+    
+    let datePicker = UIDatePicker()
     
     
     var eventArray = [Events]()
@@ -61,6 +64,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
                 let curDate = NSCalendar.currentCalendar().startOfDayForDate(NSDate())
                 if eventDate.compare(curDate) == NSComparisonResult.OrderedAscending {
                     event.deleteInBackground()
+                    self.removeEvent(event)
                 }
                 else {
                     let curLoc = event["Location"] as! String
@@ -122,6 +126,22 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             self.tableView.reloadData()
         }
     }
+    
+    func removeEvent(event: PFObject) {
+        if let notifications = UIApplication.sharedApplication().scheduledLocalNotifications {
+        for notification in notifications { // loop through notifications...
+            if (notification.userInfo!["ID"] as? String == event.objectId) { // ...and cancel the notification that corresponds to this TodoItem instance (matched by UUID)
+                UIApplication.sharedApplication().cancelLocalNotification(notification) // there should be a maximum of one match on UUID
+                break
+            }
+        }
+        }
+        let ITEMS_KEY = "StableEvents"
+        if var todoItems = NSUserDefaults.standardUserDefaults().dictionaryForKey(ITEMS_KEY) {
+            todoItems.removeValueForKey(event.objectId!)
+            NSUserDefaults.standardUserDefaults().setObject(todoItems, forKey: ITEMS_KEY) // save/overwrite todo item list
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -148,7 +168,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             
             return controller
         })()
-        self.resultSearchController.definesPresentationContext = true
+        self.definesPresentationContext = true
 
         self.resultSearchController.searchBar.placeholder = "Search events"
     }
@@ -265,15 +285,23 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         if selectedScope == 3 {
-            let datePicker = UIDatePicker()
             datePicker.datePickerMode = UIDatePickerMode.Date
             datePicker.minimumDate = NSDate()
             
             datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-            changeViewForSearch(datePicker)
+            let dateToolBar = UIToolbar()
+            dateToolBar.barStyle = UIBarStyle.Default
+            dateToolBar.translucent = true
+            dateToolBar.sizeToFit()
+            let dateDoneButton = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Plain, target: self, action: "dismissDatePicker")
+            let dateTodayButton = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.Plain, target: self, action: "selectToday")
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+            dateToolBar.setItems([dateTodayButton,spaceButton,dateDoneButton], animated: false)
+            dateToolBar.userInteractionEnabled = true
+            changeViewForSearch(datePicker, toolbarView: dateToolBar)
         }
         else {
-            changeViewForSearch(nil)
+            changeViewForSearch(nil, toolbarView: nil)
             
         }
         updateSearchResultsForSearchController(resultSearchController)
@@ -285,7 +313,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             if let selectedIndex = tableView.indexPathForSelectedRow {
                 if (self.resultSearchController.active) {
                     viewController.event = filteredEventArray[selectedIndex.section].sectionObjects[selectedIndex.row]
-                    self.resultSearchController.active = false
+                    
                     
                 }
                 else {
@@ -323,13 +351,15 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         refreshData()
     }
     
-    func changeViewForSearch(view: UIView?) {
+    func changeViewForSearch(view: UIView?, toolbarView: UIView?) {
         
         for subview in resultSearchController.searchBar.subviews[0].subviews {
             if let textView = subview as? UITextField {
                 if textView.inputView != view {
                     self.resultSearchController.searchBar.resignFirstResponder()
+                    textView.text = nil
                     textView.inputView = view
+                    textView.inputAccessoryView = toolbarView
                     self.resultSearchController.searchBar.becomeFirstResponder()
                 }
             }
@@ -343,6 +373,14 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         
         let strDate = dateFormatter.stringFromDate(datePicker.date)
         resultSearchController.searchBar.text = strDate
+    }
+    func dismissDatePicker() {
+        datePickerChanged(datePicker)
+        self.resultSearchController.searchBar.resignFirstResponder()
+    }
+    func selectToday() {
+        datePicker.setDate(NSDate(), animated: true)
+        datePickerChanged(datePicker)
     }
     /*
     // Override to support conditional editing of the table view.

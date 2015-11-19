@@ -242,7 +242,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="8PA-DU-3wz" id="Ftj-4z-MmA"/>
@@ -267,7 +267,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="OGo-ZG-tjb" detailTextLabel="N8u-A7-Os3" style="IBUITableViewCellStyleSubtitle" id="38j-IU-WDm">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="38j-IU-WDm" id="8hz-Ot-TZf">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -398,12 +398,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bu-d5-qYo">
+                                <rect key="frame" x="197" y="524" width="103" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteEvent:" destination="rRr-1Y-uav" eventType="touchUpInside" id="NRW-Od-uj3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="deleteButton" destination="2Bu-d5-qYo" id="NWi-Hc-nuI"/>
                         <outlet property="details" destination="Cbe-QJ-Uwl" id="rZg-6d-Rxa"/>
                         <outlet property="location" destination="iuE-2q-Og2" id="yDX-OI-OD1"/>
                         <outlet property="locationDetails" destination="E3X-D4-e64" id="j7f-ei-LTP"/>
