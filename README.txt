@@ -16,7 +16,7 @@ User Accounts
 Event Management
 - Create events
 - Display all events a table divided into dorms as the sections
-- Organize event table by alphabetical dorm names or by distance from the user's location
+- Organize event table by alphabetical dorm names or by distance from the user's location (defaults to alphabetical if location services is not available)
 - Search events by Name, Dorm, Creator, or Date
 - Display event details
 - Automatically deletes old events
