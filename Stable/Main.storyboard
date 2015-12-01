@@ -305,11 +305,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="sX2-FJ-U8p">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="4dy-Hp-Dsw">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="dxd-7a-MKm" kind="showDetail" identifier="showSettings" id="VcQ-ZT-EJx"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bcz-Kw-PNK">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="toc-0P-uKB" kind="showDetail" identifier="showAddEvent" id="aZf-k9-h3h"/>
                             </connections>
@@ -433,6 +435,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
+                        <color key="barTintColor" red="0.0" green="0.51973684210000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="ffr-f7-fjp" kind="relationship" relationship="rootViewController" id="Jlx-G8-XGW"/>

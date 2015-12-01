@@ -130,7 +130,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
     func removeEvent(event: PFObject) {
         if let notifications = UIApplication.sharedApplication().scheduledLocalNotifications {
         for notification in notifications { // loop through notifications...
-            if (notification.userInfo!["ID"] as? String == event.objectId) { // ...and cancel the notification that corresponds to this TodoItem instance (matched by UUID)
+            if (notification.userInfo?["ID"] as? String == event.objectId) { // ...and cancel the notification that corresponds to this TodoItem instance (matched by UUID)
                 UIApplication.sharedApplication().cancelLocalNotification(notification) // there should be a maximum of one match on UUID
                 break
             }
@@ -156,6 +156,8 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         
         
         refreshData()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(colorLiteralRed: 252.0/255.0, green: 194.0/255.0, blue: 0.0, alpha: 1.0)]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.refreshControl?.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -164,12 +166,16 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
             controller.searchBar.sizeToFit()
             controller.searchBar.delegate = self
             controller.searchBar.scopeButtonTitles = ["Name", "Dorm", "Creator", "Date"]
+            controller.searchBar.tintColor = UIColor.whiteColor()
+            controller.searchBar.barTintColor = UIColor(colorLiteralRed: 31.0/255.0, green: 76.0/255.0, blue: 44.0/255.0, alpha: 1.0)
             self.tableView.tableHeaderView = controller.searchBar
             
             return controller
         })()
         self.definesPresentationContext = true
-
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.resultSearchController.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 0.0/255.0, green: 43.0/255.0, blue: 5.0/255.0, alpha: 1.0)
         self.resultSearchController.searchBar.placeholder = "Search events"
     }
     
@@ -233,11 +239,18 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate, Se
         let label = event["Name"] as! String
         let sublabel = event["TimeAndDate"] as! String
         let truncatedsublabel = sublabel.substringToIndex(sublabel.startIndex.advancedBy(22))
-        
+        //cell?.backgroundColor = UIColor.greenColor()
         cell!.textLabel?.text = label
         cell!.detailTextLabel?.text = truncatedsublabel
         
         return cell!
+    }
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
+        header.contentView.backgroundColor = UIColor(colorLiteralRed: 31.0/255.0, green: 76.0/255.0, blue: 44.0/255.0, alpha: 1.0)
+ //make the background color light blue
+        header.textLabel!.textColor = UIColor(colorLiteralRed: 252.0/255.0, green: 194.0/255.0, blue: 0.0, alpha: 1.0) //make the text white
+        //header.alpha = 0.5 //make the header transparent
     }
     
     func filterContentForSearchText(searchText: String) {
